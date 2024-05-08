@@ -26,18 +26,6 @@ switch (day) {
         console.log("Ugyldig dag");
 }
 
-let week = "sat"; 
-switch (week) {
-    case "sat":
-        console.log("sat")
-        break;
-    case "san":
-        console.log ("san");
-        break;
-    default:
-        console.log("no");       
-}
-
 // 7. Log the grade in a Danish grading format
 let grade = 'A';
 switch (grade) {

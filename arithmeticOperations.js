@@ -1,5 +1,3 @@
-// arithmeticOperations.js
-
 // 1. Addition
 let sum = 10 + 5;
 console.log("Sum:", sum);  // Output: 15
