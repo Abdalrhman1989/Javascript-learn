@@ -66,6 +66,7 @@ if (username === "admin" && password === "password") {
     console.log("Forkert brugernavn eller adgangskode");
 }
 
+
 // 7. Calculate area of a circle
 let radius = parseFloat(prompt("Indtast radius af en cirkel:"));
 if (radius > 0) {
