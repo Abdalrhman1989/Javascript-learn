@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Exercises</title>
+    <style>
+        #square {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        #hoverButton {
+            width: 100px;
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Click Handling -->
+    <button id="clickButton">Klik mig</button>
+    <br><br>
+    <img id="clickImage" src="https://via.placeholder.com/150" alt="Placeholder Image">
+    <br><br>
+
+    <!-- Mouse Hover -->
+    <div id="square"></div>
+    <br>
+    <button id="hoverButton">Hover over mig</button>
+    <br><br>
+
+    <!-- Keypress Event -->
+    <input type="text" id="keypressInput" placeholder="Skriv noget her...">
+    <br><br>
+    <input type="text" id="enterField" placeholder="Tryk Enter">
+    <br><br>
+
+    <!-- Scroll Event -->
+    <div style="height:1200px;">Rul ned</div>
+    <button id="scrollButton" style="position:fixed; bottom:20px;">Scroll knap</button>
+    <br><br>
+
+    <!-- Change Event -->
+    <select id="colorSelector">
+        <option value="white">Vælg en farve</option>
+        <option value="red">Rød</option>
+        <option value="green">Grøn</option>
+        <option value="blue">Blå</option>
+    </select>
+    <br><br>
+    <input type="checkbox" id="checkbox1"> Check mig
+    <input type="checkbox" id="checkbox2"> Check mig
+    <input type="checkbox" id="checkbox3"> Check mig
+    <p id="checkboxCount">Antal markerede: 0</p>
+    <br><br>
+
+    <!-- Time-based Event -->
+    <div id="timer">0</div>
+    <div id="colorChanger" style="width:100px; height:100px; background-color:black;"></div>
+    <br><br>
+
+    <!-- Programmatic Assignment of Event Listeners -->
+    <div id="elementContainer"></div>
+    <button id="addElementButton">Tilføj Element</button>
+
+    <script>
+        // Click Handling
+        document.getElementById('clickButton').onclick = function() {
+            this.textContent = 'Klikket!';
+        };
+
+        document.getElementById('clickImage').onclick = function() {
+            this.src = 'https://via.placeholder.com/150/ff0000';
+        };
+
+        // Mouse Hover
+        document.getElementById('square').onmouseover = function() {
+            this.style.backgroundColor = 'red';
+        };
+        document.getElementById('square').onmouseout = function() {
+            this.style.backgroundColor = 'blue';
+        };
+
+        document.getElementById('hoverButton').onmouseover = function() {
+            this.style.width = '200px';
+            this.style.height = '100px';
+        };
+        document.getElementById('hoverButton').onmouseout = function() {
+            this.style.width = '100px';
+            this.style.height = '50px';
+        };
+
+        // Keypress Event
+        document.getElementById('keypressInput').onkeypress = function(event) {
+            console.log('Tast trykket: ' + event.key);
+        };
+
+        document.getElementById('enterField').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                alert('Enter blev trykket!');
+            }
+        };
+
+        // Scroll Event
+        window.onscroll = function() {
+            let button = document.getElementById('scrollButton');
+            button.style.backgroundColor = window.scrollY > 100 ? 'green' : 'red';
+        };
+
+        // Change Event
+        document.getElementById('colorSelector').onchange = function() {
+            document.body.style.backgroundColor = this.value;
+        };
+
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(box => {
+            box.onchange = function() {
+                let checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                document.getElementById('checkboxCount').textContent = 'Antal markerede: ' + checkedCount;
+            };
+        });
+
+        // Time-based Event
+        setInterval(function() {
+            let timerDiv = document.getElementById('timer');
+            timerDiv.textContent = parseInt(timerDiv.textContent) + 1;
+        }, 1000);
+
+        setInterval(function() {
+            let changer = document.getElementById('colorChanger');
+            changer.style.backgroundColor = changer.style.backgroundColor === 'black' ? 'white' : 'black';
+        }, 2000);
+
+        // Programmatic Assignment of Event Listeners
+        document.getElementById('addElementButton').onclick = function() {
+            let newButton = document.createElement('button');
+            newButton.textContent = 'Dynamisk knap';
+            newButton.onclick = function() {
+                alert('Dynamisk knap klikket');
+            };
+            document.getElementById('elementContainer').appendChild(newButton);
+        };
+    </script>
+</body>
+</html>
