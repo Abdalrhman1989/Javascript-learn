@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Exercises 2 </title>
+    <title>Interactive Exercises 2</title>
     <style>
-        .hidden {
-            display: none;
-        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -18,10 +16,23 @@
         <button style="background-color: green;" onclick="changeBackgroundColor('green')">Green</button>
         <button style="background-color: yellow;" onclick="changeBackgroundColor('yellow')">Yellow</button>
     </div>
+    <script>
+        function changeBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+    </script>
 
     <!-- Task 2: Add List Items -->
     <ul id="numberList"></ul>
     <button onclick="addListItem()">Add List Item</button>
+    <script>
+        function addListItem() {
+            let list = document.getElementById('numberList');
+            let newItem = document.createElement('li');
+            newItem.textContent = `Item ${list.children.length + 1}`;
+            list.appendChild(newItem);
+        }
+    </script>
 
     <!-- Task 3: Image Slider -->
     <div>
@@ -29,51 +40,7 @@
         <img id="imageSlider" src="image1.jpg" alt="Image 1" style="width: 100px; height: 100px;">
         <button onclick="changeImage(1)">Next</button>
     </div>
-
-    <!-- Task 4: Toggle Visibility -->
-    <div id="toggleDiv">
-        <img src="image.jpg" alt="Sample Image">
-    </div>
-    <button onclick="toggleVisibility()">Toggle Visibility</button>
-
-    <!-- Task 5: Append Text -->
-    <p id="textContent">Initial text: </p>
-    <button onclick="appendText('Hello')">Hello</button>
-    <button onclick="appendText('World')">World</button>
-
-    <!-- Task 6: Dynamic List Removal -->
-    <ul id="removableList">
-        <li>Item 1 <button onclick="removeItem(this)">Remove</button></li>
-        <li>Item 2 <button onclick="removeItem(this)">Remove</button></li>
-        <li>Item 3 <button onclick="removeItem(this)">Remove</button></li>
-    </ul>
-
-    <!-- Task 7: Form Validation -->
-    <form onsubmit="return validateForm()">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Submit</button>
-    </form>
-
-    <!-- Task 8: Random Color -->
-    <div id="randomColorDiv">Click the button to change color</div>
-    <button onclick="changeRandomColor()">Change Color</button>
-
     <script>
-        // Task 1: Change Background Color
-        function changeBackgroundColor(color) {
-            document.body.style.backgroundColor = color;
-        }
-
-        // Task 2: Add List Items
-        function addListItem() {
-            let list = document.getElementById('numberList');
-            let newItem = document.createElement('li');
-            newItem.textContent = `Item ${list.children.length + 1}`;
-            list.appendChild(newItem);
-        }
-
-        // Task 3: Image Slider
         let images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
         let currentIndex = 0;
         function changeImage(direction) {
@@ -82,26 +49,51 @@
             if (currentIndex >= images.length) currentIndex = 0;
             document.getElementById('imageSlider').src = images[currentIndex];
         }
+    </script>
 
-        // Task 4: Toggle Visibility
+    <!-- Task 4: Toggle Visibility -->
+    <div id="toggleDiv">
+        <img src="image.jpg" alt="Sample Image">
+    </div>
+    <button onclick="toggleVisibility()">Toggle Visibility</button>
+    <script>
         function toggleVisibility() {
             let div = document.getElementById('toggleDiv');
             div.classList.toggle('hidden');
         }
+    </script>
 
-        // Task 5: Append Text
+    <!-- Task 5: Append Text -->
+    <p id="textContent">Initial text: </p>
+    <button onclick="appendText('Hello')">Hello</button>
+    <button onclick="appendText('World')">World</button>
+    <script>
         function appendText(text) {
             let content = document.getElementById('textContent');
             content.textContent += ` ${text}`;
         }
+    </script>
 
-        // Task 6: Dynamic List Removal
+    <!-- Task 6: Dynamic List Removal -->
+    <ul id="removableList">
+        <li>Item 1 <button onclick="removeItem(this)">Remove</button></li>
+        <li>Item 2 <button onclick="removeItem(this)">Remove</button></li>
+        <li>Item 3 <button onclick="removeItem(this)">Remove</button></li>
+    </ul>
+    <script>
         function removeItem(button) {
             let li = button.parentNode;
             li.parentNode.removeChild(li);
         }
+    </script>
 
-        // Task 7: Form Validation
+    <!-- Task 7: Form Validation -->
+    <form onsubmit="return validateForm()">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
         function validateForm() {
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
@@ -112,8 +104,12 @@
             alert('Form submitted successfully!');
             return true;
         }
+    </script>
 
-        // Task 8: Random Color
+    <!-- Task 8: Random Color -->
+    <div id="randomColorDiv">Click the button to change color</div>
+    <button onclick="changeRandomColor()">Change Color</button>
+    <script>
         function changeRandomColor() {
             let div = document.getElementById('randomColorDiv');
             div.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;

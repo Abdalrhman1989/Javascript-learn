@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <style>
+        #dice img {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="dice">
+        <img src="red-die-1.png" id="dice1" alt="Dice 1">
+        <img src="red-die-1.png" id="dice2" alt="Dice 2">
+    </div>
+    <button onclick="rollDice()">Roll Dice</button>
+    <button onclick="toggleDiceColor()">Change to White Dice</button>
+
+    <script>
+        function rollDice() {
+            updateDiceImage('dice1');
+            updateDiceImage('dice2');
+        }
+
+        function updateDiceImage(diceId) {
+            let dice = document.getElementById(diceId);
+            let diceColor = dice.src.includes('red') ? 'red' : 'white';
+            let randomNumber = Math.floor(Math.random() * 6) + 1;
+            dice.src = `${diceColor}-die-${randomNumber}.png`;
+        }
+
+        function toggleDiceColor() {
+            toggleDice('dice1');
+            toggleDice('dice2');
+            updateButtonLabel();
+        }
+
+        function toggleDice(diceId) {
+            let dice = document.getElementById(diceId);
+            let currentColor = dice.src.includes('red') ? 'white' : 'red';
+            dice.src = `${currentColor}-die-1.png`;
+        }
+
+        function updateButtonLabel() {
+            let button = document.getElementById('changeColorButton');
+            let currentColor = document.getElementById('dice1').src.includes('red') ? 'white' : 'red';
+            button.textContent = `Change to ${currentColor.charAt(0).toUpperCase() + currentColor.slice(1)} Dice`;
+        }
+    </script>
+</body>
+</html>
