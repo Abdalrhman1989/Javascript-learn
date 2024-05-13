@@ -4,66 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Handling Exercises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        #square {
-            width: 100px;
-            height: 100px;
-            background-color: blue;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
         }
-        #hoverButton {
-            width: 100px;
-            height: 50px;
-            transition: all 0.3s ease;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        h2 {
+            color: #0056b3;
+            margin-top: 20px;
+        }
+        button, input[type="text"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .color-box {
+            width: 100%;
+            height: 100px;
+            background-color: black;
+            transition: background-color 0.3s;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <!-- Click Handling -->
-    <button id="clickButton">Klik mig</button>
-    <br><br>
-    <img id="clickImage" src="https://via.placeholder.com/150" alt="Placeholder Image">
-    <br><br>
-
-    <!-- Mouse Hover -->
-    <div id="square"></div>
-    <br>
-    <button id="hoverButton">Hover over mig</button>
-    <br><br>
-
-    <!-- Keypress Event -->
-    <input type="text" id="keypressInput" placeholder="Skriv noget her...">
-    <br><br>
-    <input type="text" id="enterField" placeholder="Tryk Enter">
-    <br><br>
-
-    <!-- Scroll Event -->
-    <div style="height:1200px;">Rul ned</div>
-    <button id="scrollButton" style="position:fixed; bottom:20px;">Scroll knap</button>
-    <br><br>
-
-    <!-- Change Event -->
-    <select id="colorSelector">
-        <option value="white">Vælg en farve</option>
-        <option value="red">Rød</option>
-        <option value="green">Grøn</option>
-        <option value="blue">Blå</option>
-    </select>
-    <br><br>
-    <input type="checkbox" id="checkbox1"> Check mig
-    <input type="checkbox" id="checkbox2"> Check mig
-    <input type="checkbox" id="checkbox3"> Check mig
-    <p id="checkboxCount">Antal markerede: 0</p>
-    <br><br>
-
-    <!-- Time-based Event -->
-    <div id="timer">0</div>
-    <div id="colorChanger" style="width:100px; height:100px; background-color:black;"></div>
-    <br><br>
-
-    <!-- Programmatic Assignment of Event Listeners -->
-    <div id="elementContainer"></div>
-    <button id="addElementButton">Tilføj Element</button>
-
+    <div class="container">
+        <h2>Click Handling</h2>
+        <button id="clickButton">Click me</button>
+        <img id="clickImage" src="https://via.placeholder.com/150" alt="Placeholder Image">
+        
+        <h2>Mouse Hover</h2>
+        <div id="square" class="color-box" style="background-color: blue;"></div>
+        <button id="hoverButton">Hover over me</button>
+        
+        <h2>Keypress Event</h2>
+        <input type="text" id="keypressInput" placeholder="Type something...">
+        <input type="text" id="enterField" placeholder="Press Enter">
+        
+        <h2>Scroll Event</h2>
+        <div style="height:1200px; margin-top: 20px;">Scroll down</div>
+        <button id="scrollButton" style="position:fixed; bottom:20px; left: 50%; transform: translateX(-50%);">Scroll button</button>
+        
+        <h2>Change Event</h2>
+        <select id="colorSelector">
+            <option value="white">Choose a color</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+        <div>
+            <input type="checkbox" id="checkbox1"> Check me
+            <input type="checkbox" id="checkbox2"> Check me
+            <input type="checkbox" id="checkbox3"> Check me
+        </div>
+        <p id="checkboxCount">Checked count: 0</p>
+        
+        <h2>Time-based Event</h2>
+        <div id="timer">0</div>
+        <div id="colorChanger" class="color-box" style="background-color: black;"></div>
+        
+        <h2>Programmatic Assignment of Event Listeners</h2>
+        <div id="elementContainer"></div>
+        <button id="addElementButton">Add Element</button>
+    </div>
     <script>
         // Click Handling
         document.getElementById('clickButton').onclick = function() {
