@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brugerdata Gem & Hent</title>
+</head>
+<body>
+<h2>Brugerdata Gem & Hent</h2>
+<label for="username">Navn:</label>
+<input type="text" id="username" placeholder="Indtast dit navn">
+<label for="email">E-mail:</label>
+<input type="email" id="email" placeholder="Indtast din email">
+<button onclick="gemData()">Gem Data</button>
+<h3>Gemte Oplysninger:</h3>
+<p id="savedInfo"></p>
+
+<script>
+function gemData() {
+    const navn = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    localStorage.setItem('navn', navn);
+    localStorage.setItem('email', email);
+    visData();
+}
+
+function visData() {
+    const gemtNavn = localStorage.getItem('navn');
+    const gemtEmail = localStorage.getItem('email');
+    document.getElementById('savedInfo').innerHTML = `Navn: ${gemtNavn}<br>Email: ${gemtEmail}`;
+}
+
+// Ved indlæsning af siden, tjek for gemte data
+window.onload = function() {
+    if (localStorage.getItem('navn') && localStorage.getItem('email')) {
+        visData();
+    }
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indkøbsliste</title>
+</head>
+<body>
+<h2>Min Indkøbsliste</h2>
+<input type="text" id="newItem" placeholder="Tilføj ny vare">
+<button onclick="addItem()">Tilføj Vare</button>
+<ul id="items"></ul>
+
+<script>
+const itemsList = document.getElementById('items');
+let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+function addItem() {
+    const newItem = document.getElementById('newItem').value;
+    if (newItem) {
+        itemsArray.push(newItem);
+        localStorage.setItem('items', JSON.stringify(itemsArray));
+        drawList();
+        document.getElementById('newItem').value = '';
+    }
+}
+
+function drawList() {
+    itemsList.innerHTML = '';
+    itemsArray.forEach((item, index) => {
+        itemsList.innerHTML += `<li>${item} <button onclick="removeItem(${index})">Fjern</button></li>`;
+    });
+}
+
+function removeItem(index) {
+    itemsArray.splice(index, 1);
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    drawList();
+}
+
+window.onload = drawList;
+</script>
+</body>
+</html>
